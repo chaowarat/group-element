@@ -9,19 +9,15 @@
   </head>
   <body>
 
-    <p>An example of <code>&lt;seed-element&gt;</code>:</p>
-
     <button>Say Something</button>
 
-    <group-element author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-      <h2>Hello seed-element</h2>
-    </group-element>
+    <group-element></group-element>
 
     <script>
-      document.querySelector('button').addEventListener('click', function() {
-        alert(document.querySelector('seed-element').sayHello('Hallo!'));
+      window.addEventListener('WebComponentsReady', function(e) {
+        //var dialog = document.querySelector('group-element');
       });
     </script>
-
+    
   </body>
 </html>
