@@ -1,6 +1,10 @@
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-button/paper-button.html">
 
 <dom-module id="group-element">
 
@@ -8,18 +12,63 @@
     :host {
       display: block;
       box-sizing: border-box;
+      width: 400px;
+    }
+    .container {
+      padding-left: 25px;
+    }
+    .container-bottom{
+      padding-top: 15px;
+      padding-left: 20px;
+    }
+    .text-aggre {
+      padding-left: 20px;
+      margin-top: -10px;
+      margin-bottom: -15px;
+      color: gray;
+    }
+    paper-checkbox {
+      padding-bottom: 10px;
+    }
+    paper-fab {
+      margin-top: -30px;
+      margin-left: 265px;
+      background-color: white;
+      color: gray;
+    }
+    .bt-delete{
+      padding-left: 30px;
+      color: red;
+    }
+    .bt-edit{
+      color: green;
+      padding-right: 30px;
     }
   </style>
 
   <template>
     <paper-dialog id="dialog">
-      <h2>Header</h2>
+      <h2>Grouping</h2>
       <paper-dialog-scrollable>
-        Lorem ipsum...
+        <div class="container">
+          <template is="dom-repeat" items="{{items}}">
+            <paper-checkbox>{{item}}</paper-checkbox><br/>   
+          </template>
+        </div>
+        <hr />
+        
+        <div class="container-bottom">
+          <span>Aggregate Functions</span>
+          <paper-fab mini icon="add" title="heart"></paper-fab><br />
+        </div>
+        <div class="text-aggre">
+          <span>1. COUNT CID AS _count</span>
+          <paper-button class="bt-delete" noink>delete</paper-button>
+          <paper-button class="bt-edit" noink>edit</paper-button>
+        </div>
       </paper-dialog-scrollable>
       <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button dialog-confirm>Accept</paper-button>
+        <paper-button dialog-confirm>OK</paper-button>
       </div>
     </paper-dialog>
   </template>
@@ -33,15 +82,14 @@
     is: 'group-element',
 
     properties: {
-      fancy: {
-        type: Boolean,
-        notify: true
+      items: {
+        type: Array
       },
     },
 
     ready: function() {
-      console.log('sss');
-      //this.$.dialog.open();
+      this.items = ["CID", "Province", "Name"];
+      this.$.dialog.open();
     },
 
     attached: function() {
@@ -50,8 +98,7 @@
     detached: function() {
     },
 
-    _open: function() {
-      console.log(55)
+    open: function() {
       this.$.dialog.open();
     },
 
